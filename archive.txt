@@ -30,7 +30,7 @@ PLP_PRATICA_POO/
 │       │   └── ContaInvalida.java             
 │       │
 │       ├── gerenciamento/                     # Sub-pacote para a lógica de negócio e gestão
-│       │   ├── Banco.java                     # Gerencia clientes/contas (pode usar padrão Singleton aqui)
+│       │   ├── Banco.java                     # Gerencia clientes/contas (usando padrão Singleton)
 │       │   └── GerenciadorTransacoes.java     # Separação de Responsabilidade (SRP) para transferências
 │       │
 │       ├── persistencia/                      # Sub-pacote para manipulação de arquivos
