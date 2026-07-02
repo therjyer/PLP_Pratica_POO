@@ -1,0 +1,47 @@
+PLP_PRATICA_POO/
+│
+├── src/                                       # Pasta principal do código-fonte
+│   └── br/com/sistemabancario/                # Pacote raiz do projeto
+│       │
+│       ├── modelo/                            # Entidades de Domínio (POJOs)
+│       │   ├── Cliente.java                   # Classe base do cliente
+│       │   ├── Conta.java                     # Superclasse base para as contas
+│       │   ├── ContaCorrente.java             # Subclasse com herança (limite/taxa)
+│       │   ├── ContaPoupanca.java             # Subclasse com herança (rendimento)
+│       │   ├── ContaInvestimento.java         # Subclasse extra para testar o Factory
+│       │   └── Transacao.java                 # Objeto para rastrear data, valor e tipo (Extrato)
+│       │
+│       ├── interfaces/                        # Sub-pacote exclusivo para contratos
+│       │   ├── Autenticavel.java              # Login para Clientes ou Gerentes
+│       │   └── ITaxaOperacao.java             # Interface para o padrão Strategy
+│       │
+│       ├── padroes/                           # Sub-pacote destacando os Padrões de Projeto
+│       │   │
+│       │   ├── fabrica/                       # PADRÃO 1: Factory Method
+│       │   │   └── ContaFabrica.java          # Classe responsável por instanciar a Conta correta
+│       │   │
+│       │   └── estrategia/                    # PADRÃO 2: Strategy
+│       │       ├── TaxaFixa.java              # Implementa ITaxaOperacao (ex: R$ 5,00 por TED)
+│       │       ├── TaxaPercentual.java        # Implementa ITaxaOperacao (ex: 1% do valor sacado)
+│       │       └── IsentoTaxa.java            # Implementa ITaxaOperacao (Isenção para contas premium)
+│       │
+│       ├── excecoes/                          # Sub-pacote para Tratamento de Erros Customizados
+│       │   ├── SaldoInsuficiente.java         
+│       │   └── ContaInvalida.java             
+│       │
+│       ├── gerenciamento/                     # Sub-pacote para a lógica de negócio e gestão
+│       │   ├── Banco.java                     # Gerencia clientes/contas (pode usar padrão Singleton aqui)
+│       │   └── GerenciadorTransacoes.java     # Separação de Responsabilidade (SRP) para transferências
+│       │
+│       ├── persistencia/                      # Sub-pacote para manipulação de arquivos
+│       │   ├── GerenciadorArquivo.java        # Manipula I/O (leitura e gravação de contas)
+│       │   └── LoggerSistema.java             # Salva erros e avisos em um log text
+│       │
+│       └── ui/                                # Sub-pacote para Interface e Experiência do Usuário (CLI ou GUI)
+│           ├── MenuInterativo.java            # Classe para o loop do menu (Scanner/Swing) e try-catch
+│           └── Main.java                      # Arquivo principal que inicializa o sistema, limpo e enxuto
+│
+├── dados/                                     # Pasta para persistência de dados fora do código-fonte
+│   ├── contas_salvas.csv                      # Arquivo onde as transações/contas serão salvas
+│   ├── historico_transacoes.csv               # Persistência dos extratos
+│   └── sistema.log                            # Arquivo de logs gerado pelo LoggerSistema
