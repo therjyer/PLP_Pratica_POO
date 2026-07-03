@@ -1,0 +1,111 @@
+### Bloco 1: Definição e Modelagem Estrutural (Foco em "Modelagem das Classes: 1,5 pts")
+
+Este bloco garante a base teórica e estrutural necessária para o relatório e para o início da codificação em Java.
+
+* **Sub-bloco 1.1: Escopo e Requisitos Iniciais**
+* **Tarefa 1.1.1: Definição do Produto**
+* *Sub-tarefa:* Opção 2 (Aplicação Livre): Sistema Bancário.
+* *Sub-tarefa:* Java (JDK) versão 26.0.1 e a IDE VS Cod.
+
+* **Tarefa 1.1.2: Planejamento de Pontuação Extra (+0,5)**
+* *Sub-tarefa:* Decidir a interface: gráfica usando `Java Swing`.
+* *Sub-tarefa:* Planejar a persistência de dados: salvar as transações e contas em um arquivo `.csv`.
+
+* **Sub-bloco 1.2: Engenharia do Diagrama UML**
+* **Tarefa 1.2.1: Mapeamento de Classes Básicas (Mínimo de 3)**
+* *Sub-tarefa:* Listar as classes principais. Sugestão: `Cliente`, `Conta` e `Banco`.
+* *Sub-tarefa:* Definir os atributos (ex: `nome`, `cpf`, `saldo`, `numeroConta`) e métodos (ex: `depositar()`, `sacar()`, `transferir()`).
+
+* **Tarefa 1.2.2: Incorporação de Herança, Polimorfismo e Interfaces (Bônus/Extra)**
+* *Sub-tarefa:* Projetar Herança: Criar classes filhas `ContaCorrente` (com limite/cheque especial) e `ContaPoupanca` (com rendimento) que herdam de `Conta`.
+* *Sub-tarefa:* Projetar Polimorfismo: Sobrescrever (override) o método `sacar()` para que a `ContaCorrente` cobre uma taxa ou acesse o limite.
+* *Sub-tarefa:* Projetar Interfaces: Criar uma interface `Autenticavel` para permitir que clientes e funcionários façam login.
+
+* **Tarefa 1.2.3: Desenho Final do Diagrama**
+* *Sub-tarefa:* Criar o diagrama simples UML detalhando as associações (um `Cliente` tem uma `Conta`, o `Banco` gerencia várias `Contas`).
+
+---
+
+### Bloco 2: Construção da Lógica e Aplicação POO
+
+O núcleo do desenvolvimento, onde as abstrações do UML se transformam em código Java funcional.
+
+* **Sub-bloco 2.1: Esqueleto Orientado a Objetos em Java**
+* **Tarefa 2.1.1: Classes e Construtores**
+* *Sub-tarefa:* Criar os arquivos `.java` para cada classe desenhada.
+* *Sub-tarefa:* Implementar os construtores para inicializar os objetos corretamente (ex: toda `Conta` nova começa instanciando um `Cliente` e com saldo zero).
+
+* **Tarefa 2.1.2: Encapsulamento Restrito**
+* *Sub-tarefa:* Declarar todos os atributos essenciais como `private` (ou `protected` para herança).
+* *Sub-tarefa:* Gerar os métodos `getters` e `setters` necessários, proibindo alterações diretas de variáveis críticas (ex: não deve haver `setSaldo()`, o saldo só muda via depósito ou saque).
+
+
+
+
+* **Sub-bloco 2.2: Implementação da Lógica Bancária**
+* **Tarefa 2.2.1: Desenvolvimento das Regras de Negócio**
+* *Sub-tarefa:* Implementar estruturas de decisão (`if/else`) para validar operações (ex: impedir saque se o valor for maior que o saldo + limite).
+* *Sub-tarefa:* Implementar o loop principal de execução (ex: um `while` ou `do-while` que mantém o menu do banco ativo até o usuário escolher "Sair").
+
+
+* **Tarefa 2.2.2: Codificação dos Recursos Avançados**
+* *Sub-tarefa:* Utilizar a palavra-chave `extends` para configurar as classes filhas e `@Override` para o polimorfismo.
+* *Sub-tarefa:* Utilizar a palavra-chave `implements` para a interface `Autenticavel`.
+
+
+
+
+
+---
+
+### Bloco 3: Experiência do Usuário e Validação (Foco em "Funcionalidade: 2,0 pts" e "Validação de Dados: 1,0 pt")
+
+Garantir que o sistema não trave e que o usuário saiba como operá-lo.
+
+* **Sub-bloco 3.1: Interface de Comunicação**
+* **Tarefa 3.1.1: Interação com o Usuário**
+* *Sub-tarefa:* Construir o menu interativo (textual com `System.out.print` ou gráfico).
+* *Sub-tarefa:* Instanciar e capturar as escolhas do usuário acionando os métodos corretos (`depositar`, `verSaldo`, etc.).
+
+
+
+
+* **Sub-bloco 3.2: Robustez e Segurança (Tratamento de Exceções)**
+* **Tarefa 3.2.1: Tratamento de Erros de Input em Java**
+* *Sub-tarefa:* Implementar blocos `try-catch` para capturar entradas inválidas, como `InputMismatchException` (quando o usuário digita letras no lugar do valor numérico de um depósito).
+* *Sub-tarefa:* Limpar o buffer do `Scanner` após erros para evitar loops infinitos no console.
+
+
+
+
+
+---
+
+### Bloco 4: Finalização e Empacotamento (Foco em "Organização do Código: 1,5 pts" e "Entrega")
+
+Etapa administrativa para garantir a apresentação perfeita ao professor.
+
+* **Sub-bloco 4.1: Qualidade do Código Fonte**
+* **Tarefa 4.1.1: Limpeza e Documentação**
+* *Sub-tarefa:* Padronizar a nomenclatura das variáveis usando *camelCase* (padrão Java).
+* *Sub-tarefa:* Adicionar comentários curtos e/ou `Javadoc` nos métodos principais (`sacar()`, `transferir()`) explicando o que eles retornam e quais parâmetros recebem.
+
+
+
+
+* **Sub-bloco 4.2: Elaboração do Relatório**
+* **Tarefa 4.2.1: Redação e Estruturação**
+* *Sub-tarefa:* Escrever o objetivo (Criar um Sistema Bancário para aplicar conceitos de POO).
+* *Sub-tarefa:* Descrever detalhadamente as classes, justificando o uso de Herança e Interfaces, caso aplicadas.
+
+
+* **Tarefa 4.2.2: Anexos e Evidências**
+* *Sub-tarefa:* Anexar o diagrama UML e as capturas de tela das principais funcionalidades (ex: tela de depósito bem-sucedido, tela de erro ao tentar sacar sem saldo).
+
+
+
+
+* **Sub-bloco 4.3: Preparação da Entrega**
+* **Tarefa 4.3.1: Empacotamento Final**
+* *Sub-tarefa:* Reunir todos os arquivos `.java` em uma pasta estruturada.
+* *Sub-tarefa:* Exportar o relatório final para PDF, certificando-se de que todas as exigências (objetivo, classes, UML, prints e linguagem) estão presentes. Compactar tudo em um arquivo `.zip` ou `.rar` para envio.

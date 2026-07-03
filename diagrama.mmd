@@ -1,0 +1,126 @@
+classDiagram
+    %% Pacote: modelo
+    class Cliente {
+        -String nome
+        -String cpf
+        -String senha
+    }
+    
+    class Conta {
+        <<abstract>>
+        #double saldo
+        #String numero
+        #Cliente titular
+        +depositar(double valor)
+        +sacar(double valor)
+        +transferir(double valor, Conta destino)
+        +gerarExtrato()
+    }
+    
+    class ContaCorrente {
+        -double limite
+    }
+    
+    class ContaPoupanca {
+        -double rendimento
+    }
+    
+    class ContaInvestimento {
+        -double risco
+    }
+    
+    class Transacao {
+        -Date data
+        -double valor
+        -String tipo
+    }
+
+    %% Pacote: interfaces
+    class Autenticavel {
+        <<interface>>
+        +autenticar(String senha) boolean
+    }
+    
+    class ITaxaOperacao {
+        <<interface>>
+        +calcularTaxa(double valor) double
+    }
+
+    %% Pacote: padroes.estrategia
+    class TaxaFixa {
+        +calcularTaxa(double valor) double
+    }
+    
+    class TaxaPercentual {
+        +calcularTaxa(double valor) double
+    }
+    
+    class IsentoTaxa {
+        +calcularTaxa(double valor) double
+    }
+
+    %% Pacote: padroes.fabrica
+    class ContaFabrica {
+        +criarConta(String tipo, Cliente titular) Conta
+    }
+
+    %% Pacote: gerenciamento
+    class Banco {
+        <<Singleton>>
+        -static Banco instancia
+        -List~Conta~ contas
+        -List~Cliente~ clientes
+        -Banco()
+        +getInstancia() Banco
+    }
+    
+    class GerenciadorTransacoes {
+        +executarTransferencia(Conta origem, Conta destino, double valor)
+    }
+
+    %% Pacote: persistencia
+    class GerenciadorArquivo {
+        +salvarDados(List~Conta~ contas)
+        +carregarDados() List~Conta~
+    }
+    
+    class LoggerSistema {
+        +registrarLog(String mensagem)
+        +registrarErro(Exception e)
+    }
+
+    %% Pacote: ui
+    class MenuInterativo {
+        +iniciarLoop()
+        -exibirOpcoes()
+    }
+    
+    class Main {
+        +main(String[] args)
+    }
+
+    %% Relacionamentos - Herança e Implementação
+    Conta <|-- ContaCorrente : Herança
+    Conta <|-- ContaPoupanca : Herança
+    Conta <|-- ContaInvestimento : Herança
+    
+    ITaxaOperacao <|.. TaxaFixa : Implementa (Strategy)
+    ITaxaOperacao <|.. TaxaPercentual : Implementa (Strategy)
+    ITaxaOperacao <|.. IsentoTaxa : Implementa (Strategy)
+    
+    Autenticavel <|.. Cliente : Pode implementar
+
+    %% Relacionamentos - Associação, Agregação e Composição
+    Conta "1" *-- "*" Transacao : Composição (Extrato)
+    Conta "*" o-- "1" Cliente : Agregação
+    Banco "1" *-- "*" Conta : Composição
+    Banco "1" *-- "*" Cliente : Composição
+    
+    %% Dependências
+    ContaFabrica ..> Conta : Instancia (Factory)
+    GerenciadorTransacoes ..> Conta : Manipula
+    Conta ..> ITaxaOperacao : Usa (Delegação de Taxa)
+    Main ..> MenuInterativo : Inicia
+    MenuInterativo ..> Banco : Acessa
+    Banco ..> GerenciadorArquivo : Persiste
+    Banco ..> LoggerSistema : Registra

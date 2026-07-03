@@ -38,7 +38,7 @@ PLP_PRATICA_POO/
 │       │   └── LoggerSistema.java             # Salva erros e avisos em um log text
 │       │
 │       └── ui/                                # Sub-pacote para Interface e Experiência do Usuário (CLI ou GUI)
-│           ├── MenuInterativo.java            # Classe para o loop do menu (Scanner/Swing) e try-catch
+│           ├── MenuInterativo.java            # Classe para o loop do menu (Swing) e try-catch
 │           └── Main.java                      # Arquivo principal que inicializa o sistema, limpo e enxuto
 │
 ├── dados/                                     # Pasta para persistência de dados fora do código-fonte
